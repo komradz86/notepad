@@ -1,56 +1,30 @@
-#!/usr/bin/env python3
-# simulated_eternalblue_scanner.py
-# Harmless demo: simulates scanning and then prints "vulnerable" IPs (documentation/test-net addresses).
-# This script DOES NOT perform any network I/O.
-
-import time
-import random
-import sys
-
-targets = [
-    "192.0.2.10",   # TEST-NET-1 (documentation)
-    "192.0.2.25",
-    "198.51.100.7", # TEST-NET-2 (documentation)
-    "203.0.113.12"  # TEST-NET-3 (documentation)
-]
-
-def spinner(duration=3.5):
-    chars = "|/-\\"
-    end = time.time() + duration
-    i = 0
-    while time.time() < end:
-        sys.stdout.write("\rScanning... " + chars[i % len(chars)])
-        sys.stdout.flush()
-        time.sleep(0.13)
-        i += 1
-    sys.stdout.write("\r" + " " * 40 + "\r")
-
-def simulate_scan(target):
-    print(f"Scanning {target} ...")
-    spinner(random.uniform(0.8, 1.6))
-    # randomize outcomes to look realistic for a demo
-    score = random.random()
-    if score < 0.18:
-        return "VULNERABLE"
-    elif score < 0.54:
-        return "UNKNOWN - requires further check"
-    else:
-        return "NOT VULNERABLE"
-
-def main():
-    print("SIMULATED EternalBlue scan (demo only). No network activity performed.\n")
-    results = {}
-    for t in targets:
-        status = simulate_scan(t)
-        results[t] = status
-        print(f"  -> {t}: {status}")
-        time.sleep(0.25)
-
-    print("\nSummary:")
-    for t, s in results.items():
-        if "VULNERABLE" in s:
-            print(f"[!] {t}  — SIMULATED VULNERABLE (demo)")
-    print("\nNote: These IPs are documentation/test-net addresses. This is a harmless simulation.")
-
-if __name__ == "__main__":
-    main()
+10.3.3.11
+10.3.2.12
+10.3.2.13
+10.18.3.11
+10.18.2.12
+10.107.161.51
+10.107.173.52
+10.107.201.50
+10.107.205.50
+10.83.124.50
+10.83.200.150
+10.61.20.201
+10.61.20.100
+10.61.20.150
+10.61.20.203
+10.107.9.51
+10.83.164.11
+10.83.164.12
+10.107.61.50
+10.107.21.31
+10.83.75.50
+10.107.29.50
+10.83.4.50
+10.117.20.52
+10.88.148.51
+10.107.125.50
+10.88.146.12
+10.150.125.150
+10.88.144.52
+10.107.53.50
